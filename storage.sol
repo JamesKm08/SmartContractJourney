@@ -8,7 +8,21 @@ import "add the path of the file you want to import"
 //contract StorageFactory is FirstStorage{}
 
 contract StorageFactory{
- 
+ FirstStorage[] public FirstStorageArray;
+
+    function FirstStorageContract() public{
+
+        FirstStorage sfactory = new FirstStorage();
+        FirstStorageArray.push(sfactory);
+    }
+
+    function sfStore(uint256 sfactoryIndex , uint256 sfactoryNumber) public {
+        FirstStorage(address(FirstStorageArray[sfactoryIndex])).store(sfactoryNumber);
+    }
+
+    function sfView(uint256 sfactoryIndex) public view returns(uint256) {
+        return FirstStorage(address(FirstStorageArray[sfactoryIndex])).retrieve();
+    }
 }
 
 
